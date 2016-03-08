@@ -1,0 +1,22 @@
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Run diff-pane'
+      'command': 'diff-pane:execute'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'diff-pane'
+      'submenu': [
+        {
+          'label': 'Run'
+          'command': 'diff-pane:execute'
+        }
+      ]
+    ]
+  }
+]
