@@ -1,10 +1,9 @@
 {
   "name": "diff-pane",
   "main": "./lib/diff-pane",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Diff two panes text like github view.",
-  "keywords": [
-  ],
+  "keywords": [],
   "activationCommands": {
     "atom-workspace": "diff-pane:execute"
   },
