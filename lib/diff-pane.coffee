@@ -9,12 +9,13 @@ module.exports = DiffPane =
 
   activate: (state) ->
     @diffPaneView = new DiffPaneView(state.diffPaneViewState)
-    @modalPanel = atom.workspace.addModalPanel(item: @diffPaneView.getElement(), visible: false)
+    @modalPanel = atom.workspace.addModalPanel(
+      item: @diffPaneView.getElement(), visible: false)
 
-    # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable
 
-    @subscriptions.add atom.commands.add 'atom-workspace', 'diff-pane:execute': => @execute()
+    @subscriptions.add atom.commands.add 'atom-workspace',
+      'diff-pane:execute': => @execute()
 
   deactivate: ->
     @modalPanel.destroy()
@@ -32,7 +33,8 @@ module.exports = DiffPane =
     panes = atom.workspace.getPanes()
     # check valid pane size
     if 2 != panes.length
-      atom.notifications.addWarning('Diff Pane', {detail: 'You must have two panes open.'})
+      atom.notifications.addWarning('Diff Pane',
+        {detail: 'You must have two panes open.'})
       return
 
     atom.notifications.addInfo('Diff Pane', {detail: 'Start diff...'})
@@ -40,10 +42,17 @@ module.exports = DiffPane =
     dpv = @diffPaneView
     mp = @modalPanel
 
+    # diff pane view style
+    width = document.body.scrollWidth - 40
+    height = document.body.scrollHeight - 30
+    dpv.getElement().style.width = '' + width + 'px'
+    dpv.getElement().style.height = '' + height + 'px'
+    dpv.getElement().style.marginLeft = '-' + (width / 2 - 250) + 'px'
+
     setTimeout ->
       helper = new DiffPaneHelper(panes)
       files = helper.getDiffFiles()
-      helper.execDiffCmd files, (error, stdout, stderr) =>
+      helper.execDiffCmd files, (error, stdout, stderr) ->
         helper.unlinkTempFiles(files)
         # if error?
         #   atom.notifications.addError('Diff Pane', {detail: 'error:' + error})

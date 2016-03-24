@@ -5,12 +5,6 @@ class DiffPaneView
     @element = document.createElement('div')
     @element.classList.add('diff-pane')
 
-    # Create message element
-    message = document.createElement('div')
-    message.textContent = "The DiffPane package is Alive! It's ALIVE!"
-    message.classList.add('message')
-    @element.appendChild(message)
-
   # Returns an object that can be retrieved when package is activated
   serialize: ->
 
