@@ -1,14 +1,14 @@
 {
   "name": "diff-pane",
   "main": "./lib/diff-pane",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Diff two panes text like github view.",
   "keywords": [
   ],
   "activationCommands": {
     "atom-workspace": "diff-pane:execute"
   },
-  "repository": "https://github.com/atom/diff-pane",
+  "repository": "https://github.com/t-ari/diff-pane",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
