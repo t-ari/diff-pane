@@ -9,8 +9,12 @@ module.exports =
       @diffCmd = 'diff -u --strip-trailing-cr '
 
       # get active panes text
-      @t1 = panes[0].getActiveItem().getText();
-      @t2 = panes[1].getActiveItem().getText();
+      @t1 = ''
+      @t2 = ''
+      if panes[0].getActiveItem()
+        @t1 = panes[0].getActiveItem().getText()
+      if panes[1].getActiveItem()
+        @t2 = panes[1].getActiveItem().getText()
 
       # diff process
       if @t1[@t1.length - 1] isnt '\n' or @t2[@t2.length - 1] isnt '\n'
