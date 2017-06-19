@@ -1,7 +1,7 @@
 {
   "name": "diff-pane",
   "main": "./lib/diff-pane",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Diff two panes text like github view.",
   "keywords": [],
   "activationCommands": {
