@@ -30,7 +30,11 @@ module.exports = DiffPane =
       @modalPanel.hide()
       return
 
-    panes = atom.workspace.getPanes()
+    panes = []
+    for pane in atom.workspace.getPanes()
+      if atom.workspace.isTextEditor(pane.getActiveItem())
+        panes.push(pane)
+
     # check valid pane size
     if 2 != panes.length
       atom.notifications.addWarning('Diff Pane',
@@ -52,10 +56,11 @@ module.exports = DiffPane =
     setTimeout ->
       helper = new DiffPaneHelper(panes)
       files = helper.getDiffFiles()
+      if null == files
+        atom.notifications.addInfo('Diff Pane', {detail: 'Files are same.'})
+        return
       helper.execDiffCmd files, (error, stdout, stderr) ->
         helper.unlinkTempFiles(files)
-        # if error?
-        #   atom.notifications.addError('Diff Pane', {detail: 'error:' + error})
         html = helper.getHtml(stdout)
         dpv.getElement().innerHTML = html
         mp.show()

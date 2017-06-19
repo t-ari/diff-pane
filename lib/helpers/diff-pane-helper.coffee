@@ -28,6 +28,8 @@ module.exports =
       Diff2Html.getPrettySideBySideHtmlFromDiff(patch)
 
     getDiffFiles: ->
+      if @t1 == @t2
+        return null
       f1 = new tmp.File()
       f1.writeFileSync(@t1)
       f2 = new tmp.File()
